@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Audio Player Preview</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        #fullw{
+            width: 100%;
+        height: 100%;
+        }
+        body{
+            color: #111;
+        }
+        .debug-block{
+            margin: 10px auto 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+<div class="content-wrapper">
+    <audio id="le-audio" controls src="sounds/adg3.mp3"></audio>
+    <div id="outputs-con" style="width: 100%; height:300px; overflow: scroll;">
+
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function ($) {
+
+
+
+        var javascriptNode = null;
+        var audioCtx = null;
+        var audioBuffer = null;
+        var sourceNode = null;
+        var analyser = null;
+        var webaudiosource = null;
+        var lastarray = null;
+
+        var i =0;
+
+
+        if (typeof AudioContext !== 'undefined') {
+            audioCtx = new AudioContext();
+        } else if (typeof webkitAudioContext !== 'undefined') {
+            audioCtx = new webkitAudioContext();
+        } else {
+            audioCtx = null;
+        }
+
+        if(audioCtx){
+
+            javascriptNode = audioCtx.createJavaScriptNode(2048, 1, 2);
+            javascriptNode.connect(audioCtx.destination);
+
+
+            // setup a analyzer
+            analyser = audioCtx.createAnalyser();
+            analyser.smoothingTimeConstant = 0.3;
+            analyser.fftSize = 512;
+
+            // create a buffer source node
+
+            if(is_chrome()){
+                webaudiosource = audioCtx.createMediaElementSource(document.getElementById('le-audio'));
+                webaudiosource.connect(analyser)
+                analyser.connect(audioCtx.destination);
+            }
+            if(is_safari()){
+                console.info('safari', document.getElementById('le-audio').getAttribute('src'));
+                loadSound(document.getElementById('le-audio').getAttribute('src'));
+
+            }
+
+            function loadSound(url) {
+                var request = new XMLHttpRequest();
+                request.open('GET', url, true);
+                request.responseType = 'arraybuffer';
+                // . . . step 3 code above this line, step 4 code below
+                request.onload = function(event) {
+
+                    //alert("sound loaded"); //test
+
+
+
+
+                    var request = event.target;
+                    console.info('sound loaded', audioCtx, request.response)
+
+
+
+                    //webaudiosource = audioCtx.createBufferSource();
+                    //webaudiosource.buffer = audioCtx.createBuffer(request.response, false);
+
+
+
+                    audioCtx.decodeAudioData(request.response, function(buffer) {
+                        //alert("sound decode"); //test
+                        //console.log(buffer);
+
+                        webaudiosource = audioCtx.createBufferSource()
+                        webaudiosource.buffer = buffer;
+                        audioBuffer = buffer;
+                        webaudiosource.connect(analyser)
+                        analyser.connect(audioCtx.destination);
+                        // Start playing the buffer.
+
+
+                        webaudiosource.connect(audioCtx.destination);
+                        webaudiosource.start(0);
+                    }, onError);
+
+
+
+                }//==END onload
+                request.send();
+            }
+
+            function onError(e){
+                console.log(e);
+            }
+
+
+
+
+            //console.info(analyser);
+
+
+            javascriptNode.onaudioprocess = function() {
+
+                // get the average for the first channel
+                var arr =  new Uint8Array(analyser.frequencyBinCount);
+                //console.info(analyser, analyser.getByteFrequencyData(array), new Uint8Array(analyser.frequencyBinCount));
+                lastarray = arr;
+                analyser.getByteFrequencyData(arr);
+
+                // clear the current state
+
+                // set the fill style
+
+
+            }
+            setInterval(function(){
+                if(lastarray){
+                    //alert(lastarray);
+                    var aux = '<div class="debug-block" style="">';
+                    for(i=0;i<lastarray.length;i++){
+                        aux+=lastarray[i]+', ';
+                    }
+                    aux+='</div>';
+                    //console.log($('#outputs-con'), aux);
+                    $('#outputs-con').append(aux);
+                }
+            }, 500);
+        }
+
+        function is_chrome() {
+            return navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+        }
+        ;
+        function is_safari() {
+            return Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        }
+        ;
+    });
+</script>
+</body>
+</html>	

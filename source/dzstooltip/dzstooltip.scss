@@ -1,0 +1,400 @@
+
+
+
+@mixin animation($transition-property, $transition-duration, $transition-timing) {
+  transition-property: $transition-property;transition-duration: $transition-duration;transition-timing-function: $transition-timing;-moz-transition-property:$transition-property;-moz-transition-duration: $transition-duration;-moz-transition-timing-function:$transition-timing;-webkit-transition-property:$transition-property;-webkit-transition-duration: $transition-duration;-webkit-transition-timing-function:$transition-timing;-o-transition-property:$transition-property;-o-transition-duration: $transition-duration;-o-transition-timing-function:$transition-timing;-ms-transition-property:$transition-property;
+  -ms-transition-duration: $transition-duration;-ms-transition-timing-function:$transition-timing;
+}
+
+@mixin boxsizing() {
+  -moz-box-sizing:    border-box;   -webkit-box-sizing: border-box;    box-sizing:        border-box;
+}
+/*
+=========
+TOOLTIP STYING
+
+projects where this is used - dzs calendar, dzs zoomsounds
+==========
+*/
+
+/* --- functional styling */
+.dzstooltip-con.js{
+  position: relative;
+}
+$transition-property: all;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+.dzstooltip-con .dzstooltip{
+  position:absolute;
+  bottom:0;
+  left:0;
+  visibility: hidden;
+  opacity: 0;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+
+.with-tooltip{
+	position:relative;
+        display:inline-block;
+}
+/* --- estethic styling */
+
+
+
+
+$cssselector : ".with-tooltip > .dzstooltip";
+$sel_tooltip : ".dzstooltip";
+    $main-color: #000;
+    $second-color: rgba(0,0,0,1);
+    $text-color: #d0e2f2;
+
+    $main-color: #fafafa;
+    $second-color: rgba(0,0,0,0.3);
+    $text-color: #111111;
+    $border-width:1px;
+    $arrow-size:5px;
+    $transition-property: all;
+    $transition-duration: 0.3s;
+    $transition-timing: ease-out;
+
+
+
+
+ #{$sel_tooltip}{
+	background: $main-color;
+	border: $border-width solid $second-color;
+	padding:7px 12px;
+	color:$text-color;
+	
+	opacity:0;
+	visibility:hidden;
+    @include animation($transition-property, $transition-duration, $transition-timing);
+  @include boxsizing();
+}
+
+#{$sel_tooltip}{
+  position: relative;
+}
+
+#{$sel_tooltip} {
+  position:absolute;
+  top:auto;
+  bottom:150%;
+  overflow: visible;
+  left:-10px;
+
+  color: $text-color;
+}
+
+.interactive #{$cssselector}{
+        pointer-events:auto;
+ }
+.with-tooltip:hover #{$sel_tooltip}, #{$sel_tooltip}.active{
+	visibility:visible;
+	opacity:1;
+  z-index: 999;
+}
+.with-tooltip .aux-padder{
+  position: absolute;
+  top:-10px;
+  height: 15px;
+  left: -12px;
+  width: 30px;
+}
+
+
+/* -- arrows -> functional + estethic*/
+#{$sel_tooltip}:after,#{$sel_tooltip}:before {
+	border: solid transparent;
+	position: absolute;
+	pointer-events: none;
+	content: " ";
+	height: 0;
+	width: 0;
+}
+#{$sel_tooltip}:after, #{$sel_tooltip}:before {
+	top: 100%;
+}
+
+/*====arrows position=*/
+
+#{$sel_tooltip}:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: ($arrow-size+($border-width * 2)+(-1));
+}
+#{$sel_tooltip}:before {
+  border-top-color: $second-color;
+  left: ($arrow-size/2 + 10px);
+  margin-left: -($arrow-size/2);
+}
+
+
+#{$sel_tooltip}:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-width: $arrow-size;
+}
+#{$sel_tooltip}:after {
+  border-top-color: $main-color;
+  left: ($arrow-size/2 + 11px);
+  margin-left: -($arrow-size/2);
+}
+
+
+
+$sel_tooltip : ".dzstooltip.align-right";
+
+
+#{$sel_tooltip} {
+  left:auto;
+  right: -10px;
+}
+.arrow-top.with-tooltip:hover #{$sel_tooltip}, #{$sel_tooltip}.active{
+  left:auto;
+  right: -10px;
+}
+
+
+#{$sel_tooltip}:before {
+  left:auto;
+  right: 14px;
+}
+
+#{$sel_tooltip}:after {
+  left:auto;
+  right: 15px;
+}
+
+
+$sel_tooltip : ".dzstooltip.arrow-bottom";
+
+.with-tooltip:hover #{$sel_tooltip}, #{$sel_tooltip}.active{
+  bottom:140%;
+  top:auto;
+}
+
+$sel_tooltip : ".dzstooltip.arrow-left";
+$border-width:1px;
+#{$sel_tooltip} {
+    left:200%;
+    right:auto;
+    bottom:auto;
+    top:0px;
+}
+
+
+.with-tooltip:hover #{$sel_tooltip}, #{$sel_tooltip}.active{
+  left:200%;
+  right:auto;
+  bottom:auto;
+  top:0px;
+}
+
+
+ #{$sel_tooltip}:after, #{$sel_tooltip}:before {
+    top:0%;
+}
+
+#{$sel_tooltip}:after {
+	border-width: ($arrow-size);
+	border-color: transparent transparent transparent transparent;
+	border-right-color: transparent;
+	top: $arrow-size + 5;
+        margin:0 0 0 0;
+        left: -$arrow-size*2;
+	margin-top: -$arrow-size;
+}
+
+/*====the big arrow pointer*/
+
+#{$sel_tooltip}:before {
+	border-width: ($arrow-size+($border-width * 2)+(-1));
+	border-color: transparent transparent transparent transparent;
+	border-right-color: $second-color;
+	top: $arrow-size + 5;
+        left: -$arrow-size*2;
+        
+	margin-top: -($arrow-size+($border-width*2)+(-1));
+  z-index: 0;
+}
+
+
+
+
+$sel_tooltip : ".dzstooltip.arrow-right";
+$border-width:2px;
+#{$sel_tooltip} {
+    left:auto;
+    right:200%;
+    bottom:auto;
+    top:0px;
+}
+.arrow-right.with-tooltip:hover #{$sel_tooltip}, #{$sel_tooltip}.active{
+    left:auto;
+    right:150%;
+    bottom:auto;
+    top:0px;
+}
+
+#{$sel_tooltip}:after, #{$sel_tooltip}:before {
+        top:0%;
+   
+    
+}
+
+#{$sel_tooltip}:after {
+	border-width: ($arrow-size);
+	border-color: transparent transparent transparent transparent;
+	border-left-color: transparent;
+	top: $arrow-size + 4;
+        margin:0 0 0 0;
+        left:auto;
+        right: -$arrow-size*2;
+        margin:0 0 0 0;
+	margin-top: -$arrow-size;
+}
+
+#{$sel_tooltip}:before {
+	border-width: ($arrow-size+($border-width * 2)+(-1));
+	border-color: transparent transparent transparent transparent;
+	border-left-color: $second-color;
+	top: $arrow-size + 4;
+    left:auto;
+    right: -($arrow-size+($border-width * 2)+(-1))*2;
+    margin:0 0 0 0;
+	margin-top: -($arrow-size+($border-width*2)+(-1));
+}
+ /*
+        margin:0 0 0 0;
+*/
+
+
+$cssselector : ".with-tooltip.arrow-top > .dzstooltip";
+$sel_tooltip : ".dzstooltip.arrow-top";
+#{$cssselector}{
+    }
+#{$cssselector}, #{$sel_tooltip} {
+    top:auto;
+    bottom:auto;
+    top:150%;
+    min-width:75px;
+  left:-10px;
+}
+.arrow-top.with-tooltip:hover #{$sel_tooltip}, #{$sel_tooltip}.active{
+    left:-10px;
+    top:auto;
+    bottom:auto;
+    top:100%;
+    margin-top:5px;
+}
+
+
+
+
+#{$cssselector}:after, #{$sel_tooltip}:after, #{$cssselector}:before, #{$sel_tooltip}:before {
+        top:0%;
+   
+    
+}
+
+#{$sel_tooltip}:before {
+  left:auto; right:auto; top:auto; bottom:auto;
+  border-color: transparent transparent transparent transparent;
+  border-bottom-color: $second-color;
+  left: 14px;
+  top: auto;
+  bottom: 100%;
+
+  margin-top: -($arrow-size+($border-width*2)+(-1));
+  margin-left: -($arrow-size/2);
+}
+
+#{$sel_tooltip}:after {
+  left:auto; right:auto; top:auto; bottom:auto;
+  border-width: ($arrow-size);
+  border-color: transparent transparent transparent transparent;
+  border-bottom-color: $main-color;
+
+  left: 15px;
+  top: auto;
+  bottom: 100%;
+  margin-top: -$arrow-size;
+  margin-left: -($arrow-size/2);
+}
+
+.label{
+  border-radius:0;
+}
+
+
+
+
+
+/*
+=========
+TOOLTIP STYING
+END
+==========
+*/
+
+
+$sel_tooltip : ".dzstooltip.skin-black";
+$main-color: #000;
+$second-color: rgba(0,0,0,1);
+$text-color: #d0e2f2;
+
+$main-color: rgba(0,0,0,0.85);
+$second-color: rgba(0,0,0,0.5);
+$text-color: #eee;
+$border-width:1px;
+$arrow-size:5px;
+$transition-property: all;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+
+
+
+ #{$sel_tooltip}{
+  background: $main-color;
+  border: $border-width solid $second-color;
+  color:$text-color;
+   border-radius:3px;
+
+  font-size:0.9rem;
+  line-height: 1.5rem;
+}
+
+
+$sel_tooltip : ".dzstooltip.skin-black.arrow-bottom";
+#{$sel_tooltip}:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: ($arrow-size+($border-width * 2)+(-1));
+}
+#{$sel_tooltip}:before {
+  border-top-color: $second-color;
+}
+
+
+#{$sel_tooltip}:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-width: $arrow-size;
+}
+#{$sel_tooltip}:after {
+  border-top-color: $main-color;
+}
+$sel_tooltip : ".dzstooltip.skin-black.arrow-left";
+#{$sel_tooltip}:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: ($arrow-size+($border-width * 2)+(-1));
+}
+#{$sel_tooltip}:before {
+  border-right-color: $second-color;
+}
+
+
+#{$sel_tooltip}:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-width: $arrow-size;
+}
+#{$sel_tooltip}:after {
+  border-right-color: $main-color;
+}

@@ -1,0 +1,1243 @@
+
+@mixin animation($transition-property, $transition-duration, $transition-timing) {
+transition-property: $transition-property;transition-duration: $transition-duration;transition-timing-function: $transition-timing;-moz-transition-property:$transition-property;-moz-transition-duration: $transition-duration;-moz-transition-timing-function:$transition-timing;-webkit-transition-property:$transition-property;-webkit-transition-duration: $transition-duration;-webkit-transition-timing-function:$transition-timing;-o-transition-property:$transition-property;-o-transition-duration: $transition-duration;-o-transition-timing-function:$transition-timing;-ms-transition-property:$transition-property;
+-ms-transition-duration: $transition-duration;-ms-transition-timing-function:$transition-timing;
+}
+@mixin boxsizing() {
+-moz-box-sizing:    border-box;   -webkit-box-sizing: border-box;    box-sizing:        border-box;
+}
+
+$classmain : ".audioplayer";
+
+$transition-property: all;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+
+
+.ap-wrapper{
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+}
+.ap-wrapper > .the-bg{
+  position: absolute; top:0; left:0;
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+.ap-wrapper.center-ap > *[class*="audio"]{
+  width: 100%;
+  max-width: 1190px;
+  margin: 0px auto;
+  @include boxsizing();
+  padding: 40px 10px;
+  margin-bottom: 40px;
+}
+
+/* -- functional styling */
+#{$classmain}{ position:relative;
+  width: 100%;
+  height: auto;
+}
+#{$classmain} .menu-description{ display: none;
+}
+#{$classmain}.fullflashbackup{
+
+   height: 200px;
+  padding:0!important;
+ }
+#{$classmain}.skin-default.fullflashbackup{
+
+  height: 50px;
+}
+
+#{$classmain}:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#{$classmain} .item-tobe{ position:relative; 
+}
+#{$classmain} .ap-controls{
+
+}
+#{$classmain} .ap-controls .con-controls{
+  position: absolute;
+}
+#{$classmain} .ap-controls .con-playpause{
+position: absolute;
+  cursor: pointer;
+}
+#{$classmain} .ap-controls .con-playpause .playbtn{
+position: absolute;
+  top:0;
+  left:0;
+}
+#{$classmain} .ap-controls .the-bg{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
+  z-index:0;
+}
+
+
+#{$classmain} .con-controls .controls-volume{
+  position:absolute;
+}
+
+#{$classmain}.under-480 .controls-volume{
+  display: none;
+}
+
+$size: 30px;
+#{$classmain} .prev-btn, #{$classmain} .next-btn{
+  position:absolute;
+  top:0; left:0;
+  background-size: cover;
+  background-position:  center center;
+  background-repeat: no-repeat;
+  width: $size;
+  height: $size;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+
+#{$classmain}.fullflashbackup .prev-btn{
+  top:160px;
+  left:270px;
+}
+#{$classmain}.fullflashbackup .next-btn{
+  top:160px;
+  left:300px;
+}
+
+#{$classmain}.loaded .prev-btn, #{$classmain}.loaded .next-btn{
+  visibility: visible;
+}
+#{$classmain} .prev-btn{
+  background-image: url(img/skinwave_prevbtn.png);
+}
+#{$classmain} .next-btn{
+  background-image: url(img/skinwave_nextbtn.png);
+}
+
+/* -- functional styling END */
+
+/* -- estethic styling */
+$color_bg: #111111;
+$color_main: #aaaaaa;
+$color_main_hover: #dddddd;
+$color_highlight: #db4343;
+$font_highlight: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+
+
+
+#{$classmain} .audioplayer-inner{
+  position: relative;
+}
+#{$classmain} .audioplayer-inner .the-media{
+  position: absolute;
+  top:0; left:0;
+  opacity:0; pointer-events: none;
+}
+#{$classmain} .audioplayer-inner .the-thumb-con{
+  position: relative;
+}
+#{$classmain} .audioplayer-inner .the-thumb{
+  position: relative;
+  height: 200px;
+  width:100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: $color_bg;
+}
+#{$classmain} .meta-artist-con{
+  position: absolute;
+  left: 28px;
+  bottom:5px;
+  z-index:9;
+  color: $color_main_hover;
+  max-width: 50%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  font-family: $font_highlight;
+  font-size: 11px;
+  visibility: hidden;
+
+}
+#{$classmain}.loaded .meta-artist-con{
+  visibility: visible;
+}
+#{$classmain}.under-480 .meta-artist-con{
+  display: none;
+}
+#{$classmain} .meta-artist{
+  width: 300px;
+}
+#{$classmain} .meta-artist .the-artist{
+  font-weight: bold;
+}
+.ap-wrapper #{$classmain}.skin-wave .meta-artist .the-name{
+  margin-top:2px;
+  display: inline-block;
+  padding: 2px 2px;
+  background: #111;
+  color: #fafafa;
+}
+
+#{$classmain} .ap-controls{
+  width: 100%;
+  height:40px;
+}
+#{$classmain} .ap-controls .con-controls{
+  width: 100%;
+  height: 30px;
+}
+#{$classmain} .ap-controls .con-playpause{
+  top: 10px;
+  left:9px;
+  width:10px;
+  height:10px;
+}
+#{$classmain} .ap-controls .con-playpause .playbtn{
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:0px;
+  height:0px;
+
+  content: " ";
+  border: solid transparent;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: $color_main;
+  border-width: 5px;
+  border-left-width: 10px;
+}
+
+
+#{$classmain} .ap-controls .con-playpause .pausebtn{
+  position:absolute; top:0; left:0;
+  height: 11px;
+  width: 11px;
+}
+#{$classmain} .ap-controls .con-playpause .pausebtn .pause-icon{
+  width: 100%;
+  height: 100%;
+  position: absolute;top:0;left:0;
+}
+#{$classmain} .ap-controls .con-playpause .pausebtn .pause-part-1, #{$classmain} .ap-controls .con-playpause .pausebtn .pause-part-2{
+  position: absolute; left:0; top:0;
+  width:4px;
+  height:100%;
+
+  background: $color_main;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+#{$classmain} .ap-controls .con-playpause .pausebtn .pause-part-2{
+  left: auto; right:0;
+}
+
+#{$classmain} .ap-controls .the-bg{
+  background-color: $color_bg;
+}
+
+#{$classmain} .ap-controls .scrubbar{
+  width: 100%;
+  height:10px;
+  cursor: pointer;
+  position: relative;
+}
+#{$classmain} .ap-controls .scrubbar .scrub-bg{
+  position: absolute;top:0;left:0;
+  width: 100%;
+  height:100%;
+  background: $color_main;
+}
+#{$classmain} .ap-controls .scrubbar .scrub-bg .wave-separator{
+  position: absolute;bottom:0;left:0;
+  width: 100%;
+  height:1px;
+  background: rgba(0,0,0,0.1);
+}
+
+
+$transition-property: width;
+$transition-duration: 0.2s;
+$transition-timing: ease-out;
+#{$classmain} .ap-controls .scrubbar .scrub-prog{
+  position: absolute;top:0;left:0;
+  width: 0%;
+  height:100%;
+  background: $color_highlight;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+
+
+$transition-property: opacity,visibility,left;
+$transition-duration: 0.1s;
+$transition-timing: ease-out;
+#{$classmain} .ap-controls .scrubbar .scrubBox-hover{
+  position: absolute;top:0;left:0;
+  width: 1px;
+  visibility:hidden;
+  opacity:0;
+  pointer-events: none;
+  height:100%;
+  background: $color_highlight;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+#{$classmain} .ap-controls .scrubbar:hover .scrubBox-hover{
+  visibility:visible;
+  opacity:1;
+}
+
+
+
+
+/* === VOLUME STRUCTURE */
+
+
+#{$classmain} .controls-volume{
+  top: 11px;
+  right : 50px;
+}
+
+#{$classmain} .volumeicon{
+  position: absolute;
+  top:0px;
+  left:0px;
+  background: $color_main;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:7px;
+  height:7px;
+  cursor: pointer;
+}
+
+
+
+#{$classmain} .volumeicon:before{
+  position: absolute;
+  left: -4px;
+  bottom: -3px;
+  background: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:0px;
+  height:0px;
+
+  content: " ";
+  border: solid transparent;
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: $color_main;
+  border-width: 7px;
+  margin-left: 0px;
+  outline: 1px solid transparent;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+
+
+#{$classmain} .controls-volume:hover .volumeicon{
+  background: $color_main_hover;
+}
+
+
+
+#{$classmain} .controls-volume:hover .volumeicon:before{
+  border-right-color: $color_main_hover;
+}
+
+#{$classmain} .volume_static{
+  position:absolute;
+  top:1px;
+  left:16px;
+  background: $color_main;
+  background-position: center center;
+  background-repeat: repeat-x;
+  width:26px;
+  height:6px;
+  cursor: pointer;
+}
+
+
+$transition-property: width;
+$transition-duration: 0.1s;
+$transition-timing: ease-out;
+
+
+#{$classmain} .volume_active{
+  position:absolute;
+  top:1px;
+  left:16px;
+  background: $color_highlight;
+  background-position: center center;
+  background-repeat: repeat-x;
+  width:24px;
+  height:6px;
+  pointer-events:none;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+#{$classmain} .volume_cut{
+  display: none;
+}
+
+#{$classmain}.fullflashbackup .prev-btn{
+  top:auto;
+  background-image: url(img/skin_minion_arrowleft.png);
+  left:auto;
+  bottom: 1px;
+  right: 30px;
+}
+#{$classmain}.fullflashbackup .next-btn{
+  top:auto;
+  background-image: url(img/skin_minion_arrowright.png);
+  left:auto;
+  bottom: 1px;
+  right: 1px;
+}
+
+
+/* ==========SKIN-default styling END */
+
+
+/* ==========SKIN-wave styling */
+
+$color_bg: #111111;
+$color_main: #aaaaaa;
+$color_main_hover: #dddddd;
+$color_highlight: #db4343;
+$color_highlight_2: #ea8c52;
+$font_highlight: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+$classmain: ".audioplayer.skin-wave";
+
+
+#{$classmain} .audioplayer-inner .the-thumb-con{
+  position: relative;
+  float:left;
+  margin-right: 20px;
+}
+#{$classmain} .audioplayer-inner .the-thumb{
+  position: relative;
+  height: 200px;
+  width:200px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: $color_bg;
+  border: 1px solid rgba(0,0,0,0.3);
+  @include boxsizing();
+}
+#{$classmain}.under-480 .audioplayer-inner .the-thumb{
+  width:100px;
+}
+#{$classmain} .meta-artist-con{
+  position: absolute;
+  left: 28px;
+  bottom: auto;
+  top:155px;
+  z-index:9;
+  color: $color_main;
+  max-width: 50%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: $font_highlight;
+  font-size: 14px;
+  line-height: 1.15em;
+
+}
+#{$classmain} .meta-artist-con .the-artist{
+  font-size: 16px;
+  color: $color_highlight;
+}
+#{$classmain} .ap-controls{
+  overflow: hidden;
+  width: auto;
+  position: relative;
+}
+#{$classmain} .con-controls{
+  margin-top: 10px;
+}
+#{$classmain} .controls-volume{
+  display: none;
+  right: 100px;
+}
+#{$classmain} .ap-controls .the-bg{
+  background-color: transparent;
+}
+#{$classmain} .ap-controls .scrubbar{
+  width: 100%;
+  height:140px;
+  cursor: pointer;
+  position: relative;
+}
+#{$classmain} .ap-controls .scrubbar .scrub-bg{
+  position: absolute;top:0%;left:0;
+  width: 100%;
+  height: 105px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-color: transparent;
+}
+$transition-property: transform;
+$transition-duration: 0.3s;
+$transition-timing: linear;
+#{$classmain} .ap-controls .scrubbar .scrub-bg .scrub-bg-img{
+  height:100%;
+  width: 100%;
+  max-width: none;
+  position: relative;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+#{$classmain} .ap-controls .scrubbar .scrub-bg canvas.scrub-bg-img{
+  width:100%;
+}
+
+
+#{$classmain} .ap-controls .scrubbar .scrub-bg-reflect{
+  position: absolute;top:105px;left:0;
+  width: 100%;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-color: transparent;
+  opacity:0.5;
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+#{$classmain} .ap-controls .scrubbar .scrub-bg-reflect .scrub-bg-img-reflect{
+  height:100%;
+  width: 100%;
+  max-width: none;
+  position: relative;
+}
+
+
+
+#{$classmain} .ap-controls .scrubbar .scrub-bg .scrub-bg-div{
+  height:100%;
+  width: 100%;
+  background: #aaa;
+  position:absolute; top:0; left:0;
+}
+
+
+
+
+
+#{$classmain} .ap-controls .scrubbar .scrub-prog{
+  position: absolute;top:0;left:0;
+  width: 0;
+  height:105px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+
+$transition-property: transform;
+$transition-duration: 0.1s;
+$transition-timing: linear;
+#{$classmain} .ap-controls .scrubbar .scrub-prog .scrub-prog-img{
+  height:100%;
+  width: 100%;
+  max-width: none;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+#{$classmain} .ap-controls .scrubbar .scrub-prog .scrub-prog-div{
+  height:100%;
+  width: 100%;
+  background: $color_highlight_2;
+  position:absolute; top:0; left:0;
+  opacity: 0.3;
+}
+
+
+
+#{$classmain} .ap-controls .scrubbar .scrub-prog-reflect{
+  position: absolute;top:105px;left:0;
+  width: 0;
+  height:25px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+
+#{$classmain} .ap-controls .scrubbar .scrub-prog-reflect .scrub-prog-img-reflect, #{$classmain} .ap-controls .scrubbar .scrub-prog-reflect .scrub-prog-canvas-reflect{
+  height:100%;
+  width: 100%;
+  max-width: none;
+  opacity:0.5;
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+
+#{$classmain} .ap-controls .scrubbar .scrubBox-hover{
+  height:70%;
+  top:15%;
+  background: $color_highlight_2;
+}
+
+
+#{$classmain} .ap-controls .con-playpause{
+  top: 0px;
+  left:0px;
+  width:50px;
+  height:50px;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+#{$classmain} .ap-controls .con-playpause .playbtn{
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:100%;
+  height:100%;
+
+  content: " ";
+  border: solid transparent;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: none;
+  border-width: 0px;
+  border-left-width: 0px;
+
+  background-image: url(img/playbtn.png);
+  background-size: cover;
+
+
+}
+#{$classmain} .ap-controls .con-playpause .pausebtn{
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:100%;
+  height:100%;
+
+  content: " ";
+  border: solid transparent;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: none;
+  border-width: 0px;
+  border-left-width: 0px;
+
+
+  background-image: url(img/pausebtn.png);
+  background-size: cover;
+}
+#{$classmain} .ap-controls .con-playpause .pausebtn > *{
+  display: none;
+}
+
+/* ==========SKIN-wave styling END */
+
+
+/* ==========SKIN-minimal styling */
+
+$color_bg: #111111;
+$color_main: #aaaaaa;
+$color_main_hover: #dddddd;
+$color_highlight: #db4343;
+$color_highlight_2: #ea8c52;
+$font_highlight: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+$classmain: ".audioplayer.skin-minimal";
+
+#{$classmain} .ap-controls .the-bg{
+  background-color: transparent;
+}
+#{$classmain} .ap-controls .con-playpause .playbtn{
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:100%;
+  height:100%;
+
+  content: " ";
+  border: solid transparent;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: none;
+  border-width: 0px;
+  border-left-width: 0px;
+  background-size: cover;
+
+
+}
+#{$classmain} .ap-controls .con-playpause.canvas-fallback .playbtn{
+
+  background-image: url(img/playbtn.png);
+  background-size: cover;
+
+
+}
+#{$classmain} .ap-controls .con-playpause .playbtn-canvas{
+  width:100%;
+  height:100%;
+}
+#{$classmain} .ap-controls{
+  height:100px;
+}
+#{$classmain} .ap-controls .con-controls{
+  height:auto;
+  position: relative;
+}
+#{$classmain} .ap-controls .con-playpause{
+  top: 0px;
+  left:0px;
+  width:100px;
+  height:100px;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  position: relative;
+}
+#{$classmain} .ap-controls .con-playpause{
+  top: 0px;
+  left:0px;
+  width:100px;
+  height:100px;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  position: relative;
+  margin: 0 auto;
+}
+#{$classmain} .ap-controls .con-playpause .pausebtn{
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:100%;
+  height:100%;
+
+  content: " ";
+  border: solid transparent;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: none;
+  border-width: 0px;
+  border-left-width: 0px;
+  background-size: cover;
+}
+#{$classmain} .ap-controls .con-playpause.canvas-fallback .pausebtn{
+
+  background-image: url(img/pausebtn.png);
+  background-size: cover;
+
+
+}
+#{$classmain} .ap-controls .con-playpause .pausebtn > div{
+  display: none;
+}
+#{$classmain} .ap-controls .con-pausebtn .pausebtn-canvas{
+  width:100%;
+  height:100%;
+}
+
+/* ==========SKIN-minimal styling ENDD */
+
+
+
+
+
+/* ==========SKIN-minimal styling */
+
+$color_bg: #111111;
+$color_main: #aaaaaa;
+$color_main_hover: #dddddd;
+$color_highlight: #db4343;
+$color_highlight_2: #ea8c52;
+$font_highlight: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+$classmain: ".audioplayer.skin-minion";
+
+#{$classmain} .ap-controls .the-bg{
+  background-color: transparent;
+}
+#{$classmain} .ap-controls .con-playpause .playbtn-canvas{
+  width:100%;
+  height:100%;
+}
+#{$classmain} .ap-controls{
+  height:14px;
+}
+#{$classmain} .ap-controls .con-controls{
+  height:auto;
+  position: relative;
+}
+#{$classmain} .ap-controls .con-playpause{
+  top: 0px;
+  left:0px;
+  width:14px;
+  height:14px;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  position: relative;
+  margin: 0 auto;
+}
+
+#{$classmain} .ap-controls .con-playpause .playbtn{
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:100%;
+  height:100%;
+
+  content: " ";
+  border: solid transparent;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: none;
+  border-width: 0px;
+  border-left-width: 0px;
+  background-size: cover;
+  background-image: url(img/skin_minion_pausebtn.png);
+
+}
+#{$classmain} .ap-controls .con-playpause .pausebtn{
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  width:100%;
+  height:100%;
+
+  content: " ";
+  border: solid transparent;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: none;
+  border-width: 0px;
+  border-left-width: 0px;
+  background-size: cover;
+  background-image: url(img/skin_minion_playbtn.png);
+}
+
+#{$classmain} .the-artist{
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+
+$transition-property: transform;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+
+#{$classmain} .prev-btn{
+  width: 14px;
+  height: 14px;
+  background-image: url(img/skin_minion_arrowleft.png);
+
+  transform: translateX(5px);
+  -webkit-transform: translateX(5px);
+  opacity:0;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+#{$classmain} .next-btn{
+  width: 14px;
+  height: 14px;
+  background-image: url(img/skin_minion_arrowright.png);
+
+  transform: translateX(-5px);
+  -webkit-transform: translateX(-5px);
+  opacity:0;
+  @include animation($transition-property, $transition-duration, $transition-timing);
+}
+
+#{$classmain}.is-playing .prev-btn, #{$classmain}.is-playing .next-btn{
+
+  transform: translateX(0px);
+  -webkit-transform: translateX(0px);
+  opacity:1;
+}
+
+
+
+#{$classmain} .ap-controls .con-playpause .pausebtn > div{
+  display: none;
+}
+#{$classmain} .ap-controls .con-pausebtn .pausebtn-canvas{
+  width:100%;
+  height:100%;
+}
+
+/* ==========SKIN-minimal styling ENDD */
+
+
+
+
+/*===========
+=================================
+===========
+======================
+Audio Gallery
+=================================
+*/
+
+
+$classmain : ".audiogallery";
+
+$transition-property: all;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+
+/* -- functional styling */
+#{$classmain}{ position:relative;
+}
+
+#{$classmain} *[class*=audioplayer] .menu-description{ display: none;
+}
+#{$classmain} .audioplayer-tobe{
+  display: none;
+}
+
+
+#{$classmain} .slider-main{
+  position: relative;
+}
+#{$classmain} .slider-main .slider-clipper{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#{$classmain} .nav-main{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+$transition-property: transform;
+$transition-duration: 0.01s;
+$transition-timing: linear;
+#{$classmain} .nav-main .nav-clipper{
+  position: relative;
+  //@include animation($transition-property, $transition-duration, $transition-timing);
+
+}
+#{$classmain} .nav-main .menu-item{
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+#{$classmain} .nav-main .menu-item:last-child{
+  border-bottom: 0px solid rgba(255,255,255,0.2);
+}
+#{$classmain} .nav-main .menu-item:after{
+  display: block;
+  clear:both;
+  content: " ";
+}
+#{$classmain} .nav-main .menu-item .menu-item-thumb-con{
+  width: 50px;
+  height: 50px;
+  margin:10px;
+}
+#{$classmain} .nav-main .menu-item .menu-item-thumb-con .menu-item-thumb{
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50%;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+
+}
+#{$classmain} .nav-main .menu-item .the-artist{
+  font-size: 13px;
+  position: absolute;
+  right: 5px; top:5px;
+}
+#{$classmain} .nav-main .menu-item .the-name{
+  font-size: 11px;
+  position: absolute;
+  right: 5px; top:22px;
+}
+
+$nav_margin : 5px;
+
+#{$classmain}.menu-position-bottom .nav-main{
+  margin-top:25px;
+}
+#{$classmain}.menu-position-top .nav-main{
+  margin-bottom:25px;
+}
+
+
+
+
+
+
+
+
+
+
+/*
+=========
+TOOLTIP STYING
+STRUCTURE -> <div class="with-tooltip"><span>tooltip</span>other stuff</div>
+==========
+*/
+
+/* --- functional styling */
+.dzstooltip-con.js{ position:fixed; top:0px;left:0;
+}
+.dzstooltip{ position:absolute; top:0; left:0;
+}
+
+.with-tooltip{
+  position:relative;
+}
+/* --- estethic styling */
+
+@mixin css_animation($transition-property, $transition-duration, $transition-timing) {
+  transition-property: $transition-property;transition-duration: $transition-duration;transition-timing-function: $transition-timing;-moz-transition-property:$transition-property;-moz-transition-duration: $transition-duration;-moz-transition-timing-function:$transition-timing;-webkit-transition-property:$transition-property;-webkit-transition-duration: $transition-duration;-webkit-transition-timing-function:$transition-timing;-o-transition-property:$transition-property;-o-transition-duration: $transition-duration;-o-transition-timing-function:$transition-timing;-ms-transition-property:$transition-property;
+  -ms-transition-duration: $transition-duration;-ms-transition-timing-function:$transition-timing;
+}
+
+
+
+$main-color: #000;
+$text-color: #d0e2f2;
+
+$main-color: rgba(255,255,255,0.8);
+$second-color: rgba(0,0,0,0.2);
+$text-color: #111;
+$border-width:1px;
+$arrow-size:5px;
+$transition-property: all;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+
+$cssselector : ".with-tooltip > span:first-child";
+$sel_tooltip : ".dzstooltip";
+
+
+
+#{$cssselector}  , #{$sel_tooltip}{
+  background: $main-color;
+  border: $border-width solid $second-color;
+  padding:1px 12px;
+  color:$text-color;
+
+  font-size:11px;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Arial, sans-sarif;
+
+  opacity:0;
+  visibility:hidden;
+  @include css_animation($transition-property, $transition-duration, $transition-timing);
+}
+#{$sel_tooltip} {
+  opacity:1; visibility:visible;
+  display:inline-block;
+}
+
+#{$cssselector} {
+  position:absolute;
+  transform: translateY(-5px);
+  -webkit-transform: translateY(-5px);
+  overflow:visible;
+  left:0px;
+  pointer-events:none;
+
+  color: $text-color;
+  bottom:150%;
+}
+
+.interactive #{$cssselector}{
+  pointer-events:auto;
+}
+.with-tooltip:hover span:first-child{
+  visibility:visible;
+  opacity:1;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+}
+
+#{$sel_tooltip}{
+  position: relative;
+}
+
+/* -- arrows -> functional + estethic*/
+#{$cssselector}:after, #{$sel_tooltip}:after, #{$cssselector}:before, #{$sel_tooltip}:before {
+  border: solid transparent;
+  position: absolute;
+  pointer-events: none;
+  content: " ";
+  height: 0;
+  width: 0;
+}
+#{$cssselector}:after, #{$sel_tooltip}:after, #{$cssselector}:before, #{$sel_tooltip}:before {
+  top: 100%;
+}
+
+#{$cssselector}:after, #{$sel_tooltip}:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-width: $arrow-size;
+}
+#{$cssselector}:after, #{$sel_tooltip}:after {
+  border-top-color: $main-color;
+  left: 12px;
+  margin-left: -$arrow-size;
+}
+
+#{$cssselector}:before, #{$sel_tooltip}:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-width: ($arrow-size+($border-width * 2)+(-1));
+}
+#{$cssselector}:before, #{$sel_tooltip}:before {
+  border-top-color: $second-color;
+  left: 12px;
+  margin-left: -($arrow-size+($border-width * 2)+(-1));
+}
+
+
+$cssselector : ".with-tooltip.arrow-left span:first-child";
+$sel_tooltip : ".dzstooltip.arrow-left";
+$border-width:1px;
+#{$cssselector}{
+  box-shadow:0 0 0 0;
+}
+#{$cssselector} {
+  left:200%;
+  right:auto;
+  bottom:auto;
+  top:0px;
+}
+#{$cssselector}:after, #{$sel_tooltip}:after, #{$cssselector}:before, #{$sel_tooltip}:before {
+  top:0%;
+}
+
+#{$cssselector}:after, #{$sel_tooltip}:after {
+  border-width: ($arrow-size);
+  border-color: transparent transparent transparent transparent;
+  border-right-color: transparent;
+  top: $arrow-size + 5;
+  margin:0 0 0 0;
+  left: -$arrow-size*2;
+  margin-top: -$arrow-size;
+}
+
+/*====the big arrow pointer*/
+
+#{$cssselector}:before, #{$sel_tooltip}:before {
+  border-width: ($arrow-size+($border-width * 2)+(-1));
+  border-color: transparent transparent transparent transparent;
+  border-right-color: $second-color;
+  top: $arrow-size + 5;
+  left: -($arrow-size+($border-width * 2));
+
+  margin-top: -($arrow-size+($border-width*2)+(-1));
+  z-index: 0;
+}
+
+$cssselector : ".with-tooltip.arrow-right span:first-child";
+$sel_tooltip : ".dzstooltip.arrow-right";
+$border-width:2px;
+#{$cssselector}{
+  box-shadow:0 0 0 0;
+  min-width:100px;
+}
+#{$cssselector} {
+  left:auto;
+  right:200%;
+  bottom:auto;
+  top:0px;
+}
+.arrow-right.with-tooltip:hover span:first-child{
+  left:auto;
+  right:150%;
+  bottom:auto;
+  top:0px;
+}
+
+#{$cssselector}:after, #{$sel_tooltip}:after, #{$cssselector}:before, #{$sel_tooltip}:before {
+  top:0%;
+
+
+}
+
+#{$cssselector}:after, #{$sel_tooltip}:after {
+  border-width: ($arrow-size);
+  border-color: transparent transparent transparent transparent;
+  border-left-color: transparent;
+  top: $arrow-size + 4;
+  margin:0 0 0 0;
+  left:auto;
+  right: -$arrow-size*2;
+  margin:0 0 0 0;
+  margin-top: -$arrow-size;
+}
+
+#{$cssselector}:before, #{$sel_tooltip}:before {
+  border-width: ($arrow-size+($border-width * 2)+(-1));
+  border-color: transparent transparent transparent transparent;
+  border-left-color: $second-color;
+  top: $arrow-size + 4;
+  left:auto;
+  right: -($arrow-size+($border-width * 2)+(-1))*2;
+
+  margin:0 0 0 0;
+  margin-top: -($arrow-size+($border-width*2)+(-1));
+}
+/*
+       margin:0 0 0 0;
+*/
+
+
+$cssselector : ".with-tooltip.arrow-up span:first-child";
+$sel_tooltip : ".dzstooltip.arrow-up";
+#{$cssselector}{
+}
+#{$cssselector} {
+  top:auto;
+  bottom:auto;
+  top:150%;
+  min-width:75px;
+}
+.arrow-up.with-tooltip:hover span:first-child{
+  left:auto;
+  top:auto;
+  bottom:auto;
+  top:100%;
+  margin-top:5px;
+}
+
+#{$cssselector}:after, #{$sel_tooltip}:after, #{$cssselector}:before, #{$sel_tooltip}:before {
+  top:0%;
+
+
+}
+
+#{$cssselector}:after, #{$sel_tooltip}:after {
+  left:auto; right:auto; top:auto; bottom:auto;
+  border-width: ($arrow-size);
+  border-color: transparent transparent transparent transparent;
+  border-bottom-color: $main-color;
+
+  left: $arrow-size * 2;
+  top: -$arrow-size;
+  margin:0 0 0 0;
+  margin-top: -$arrow-size;
+}
+
+#{$cssselector}:before, #{$sel_tooltip}:before {
+  left:auto; right:auto; top:auto; bottom:auto;
+  border-color: transparent transparent transparent transparent;
+  border-bottom-color: $second-color;
+  left: $arrow-size * 2 + ($border-width);
+  top: -$arrow-size -$border-width - 1;
+
+  margin-top: -($arrow-size+($border-width*2)+(-1));
+}
+
+.label{
+  border-radius:0;
+}
+
+
+
+/*
+=========
+TOOLTIP STYING
+END
+==========
+*/

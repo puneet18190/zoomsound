@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Audio Player Preview</title>
+    <link href="./bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="./bootstrap/bootstrap-responsive.css" rel="stylesheet">
+    <link rel='stylesheet' type="text/css" href="style/style.css"/>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <link rel='stylesheet' type="text/css" href="audioplayer/audioplayer.css"/>
+    <script src="audioplayer/audioplayer.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="content-wrapper" style="color: #111;">
+
+    <section class="mcon-mainmenu" style="position: relative; z-index: 5; width:100%;">
+
+        <!--
+        -->
+        <div class="container">
+
+            <div class="separator"></div>
+            <div class="row">
+                <div class="span6">
+                    <div id="apsimple" class="audioplayer-tobe" style="width:100%; margin-top:0;" data-videoTitle="Audio Video" data-type="normal" data-source="sounds/adg3.mp3">
+                        <div class="meta-artist"><span class="the-artist">Tim McMorris</span> - It's a beautiful day</div>
+                    </div>
+                    <script>
+                        jQuery(document).ready(function ($) {
+
+                            dzsap_init("#apsimple", {
+                                autoplay: "off"
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="span6">
+
+                    <h2 class="row-title">Simple Player.</h2>
+
+                    <div class="simple-hr mb10"></div>
+                    <p>As simple as it can get.</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<div class="con-footer">
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                &copy; copyright <a href="http://bit.ly/nM4R6u">ZoomIt</a> 2013
+
+            </div>
+            <div class="span6" style="text-align: right">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

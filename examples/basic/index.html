@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Audio Player Preview</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <link rel='stylesheet' type="text/css" href="audioplayer/audioplayer.css"/>
+    <script src="audioplayer/audioplayer.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="apsimple" class="audioplayer-tobe" style="width:100%; margin-top:0;" data-videoTitle="Audio Video" data-type="normal" data-source="../../source/sounds/adg3.mp3">
+    <div class="meta-artist"><span class="the-artist">Tim McMorris</span> - It's a beautiful day</div>
+</div>
+<script>
+    jQuery(document).ready(function ($) {
+
+        dzsap_init("#apsimple", {
+            autoplay: "off"
+        });
+    });
+</script>
+</body>
+</html>
